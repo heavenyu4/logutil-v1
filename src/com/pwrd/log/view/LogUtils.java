@@ -93,7 +93,7 @@ public class LogUtils {
 				e.printStackTrace();
 			}
 		}
-		OperLog.getInstance().setPath(logDir);
+		OperLog.getInstance().setPath(libDir);
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -228,7 +228,7 @@ public class LogUtils {
 
 				// 拷贝onesdk的debug开关文件
 				copyDebugFile();
-
+				
 				String cmd = libDir + "\\adb.exe -s " + currentDeviceBean.serialNo + " logcat -v threadtime >" + logDir
 						+ "\\" + logName;
 				updateLogArea("【" + currentDeviceBean.model + "】" + " 开始抓取log: " + logName + " .......");
@@ -449,13 +449,14 @@ public class LogUtils {
 	// 拷贝onesdk的debug开关文件
 	private void copyDebugFile() {
 		String cmd = libDir + "//adb.exe -s " + currentDeviceBean.serialNo + " push " + libDir
-				+ "//onesdk_develop.properties /sdcard/";
+				+ "//onesdk_develop.properties /sdcard/onesdk_develop.properties";
 		new CommandThread(cmd, new RefreshUICallBack() {
 
 			@Override
 			public void refreshUI(String string) {
 			}
 		}).start();
+		
 	}
 
 	// 删除onesdk的debug开关文件
@@ -474,6 +475,8 @@ public class LogUtils {
 			public void refreshUI(String string) {
 			}
 		}).start();
+		
+		
 	}
 
 	private boolean isFileNameValid(String fileName) {
