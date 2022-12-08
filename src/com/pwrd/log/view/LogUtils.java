@@ -449,7 +449,7 @@ public class LogUtils {
 	// 拷贝onesdk的debug开关文件
 	private void copyDebugFile() {
 		String cmd = libDir + "//adb.exe -s " + currentDeviceBean.serialNo + " push " + libDir
-				+ "//onesdk_develop.properties /sdcard/";
+				+ "//onesdk_develop.properties /sdcard/onesdk_develop.properties";
 		new CommandThread(cmd, new RefreshUICallBack() {
 
 			@Override
